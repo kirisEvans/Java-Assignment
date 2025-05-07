@@ -1,4 +1,4 @@
-package assignment5;
+package assignment56;
 
 public class Time {
     private int hour;
@@ -13,6 +13,10 @@ public class Time {
         minutes += this.minute;
         this.hour += minutes / 60;
         this.minute = minutes % 60;
+    }
+
+    public int extend() {
+        return hour * 60 + minute;
     }
 
     @Override

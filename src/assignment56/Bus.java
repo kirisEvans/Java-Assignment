@@ -1,23 +1,22 @@
-package assignment5;
+package assignment56;
 
-public class Car extends Vehicle{
-    private final int start_Price = 15;
-    private final int increment_Price = 5;
-    private final int max_Price = 60;
+public class Bus extends Vehicle{
+    private final int start_Price = 0;
+    private final int increment_Price = 15;
+    private final int max_Price = 100;
     private int previous_time;
     private int previous_money;
 
-
-    public Car(String plateNumber) {
+    public Bus(String plateNumber) {
         super(plateNumber);
     }
 
     public int calculateMoney(Time leaveTime) {
-        if (arriveTime == null) {
+        this.leaveTime = leaveTime;
+        if (!isInside) {
             return 0;
         }
         int parking_time = parking_time(leaveTime);
-        arriveTime = null;
         int money;
         parking_time += previous_time;
         isInside = false;
@@ -26,15 +25,15 @@ public class Car extends Vehicle{
         }
         else if (parking_time < 60) {
             previous_time = parking_time;
-            money = start_Price;
+            money = increment_Price;
         }
         else if (parking_time < 120) {
             previous_time = parking_time;
-            money = start_Price + increment_Price * (parking_time / 60);
+            money = increment_Price * (parking_time / 60 + 1);
         }
         else {
             previous_time = parking_time;
-            money =  Math.min(start_Price + increment_Price * (parking_time / 60), max_Price);
+            money = Math.min(increment_Price * (parking_time / 60 + 1), max_Price);
         }
         money -= previous_money;
         previous_money += money;
@@ -46,7 +45,15 @@ public class Car extends Vehicle{
                 (arriveTime.getHour() * 60 + arriveTime.getMinute());
     }
 
+    public void set_count(ConcreteParkingLot concreteParkingLot) {
+        concreteParkingLot.setBus_count(concreteParkingLot.getBus_count()-1);
+    }
+
+    public String record_string() {
+        return String.format("Bus %s %s %s", plateNumber, arriveTime, leaveTime);
+    }
+
     public String toString() {
-        return "Car" + " " + this.plateNumber + " " + isInside;
+        return "Bus" + " " + this.plateNumber + " " + isInside;
     }
 }

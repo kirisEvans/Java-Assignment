@@ -1,8 +1,4 @@
-package assignment5;
-
-/*
-该文件必须不放在包里才能正常运行
-*/
+package assignment56;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,9 +23,9 @@ public class spring25A5LocalTest {
     public void test01Reflect() {
         Class<?> clzVehicle = Vehicle.class;
         String[] expectFieldsVehicle = {
-                "protected java.lang.String Vehicle.plateNumber",
-                "protected boolean Vehicle.isInside",
-                "protected Time Vehicle.arriveTime"
+                "protected java.lang.String assignment5.Vehicle.plateNumber",
+                "protected boolean assignment5.Vehicle.isInside",
+                "protected assignment5.Time assignment5.Vehicle.arriveTime"
         };
         ArrayList<String> fieldsVehicle = new ArrayList<>();
         for(Field field: clzVehicle.getDeclaredFields()) {
